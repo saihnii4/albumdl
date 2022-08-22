@@ -13,6 +13,6 @@ def parse_object(obj):
 sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=os.environ['CLIENT_ID'],
                                                            client_secret=os.environ['CLIENT_SECRET']))
 
-results = sp.search(q=sys.argv[1], limit=20)
+results = sp.search(q=" ".join(sys.argv[1:]), limit=20, type='track')
 for item in results['tracks']['items']:
     print("\"%s\"" % parse_object(item), end=' ')
