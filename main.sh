@@ -11,3 +11,8 @@ fi
 
 python "$(dirname $0)/query.py" $1 | xargs gum choose | python "$(dirname $0)/dl.py"
 
+# TODO: involve XDG_DIR_HOME
+# cp doesn't evaluate wildcards wthtthhth
+if [[ -v ALBUMDL_MIGRATE ]]; then
+	cp -r "$(dirname $0)/albums/*" ~/Music
+fi
