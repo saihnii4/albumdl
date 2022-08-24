@@ -77,8 +77,8 @@ if __name__ == "__main__":
     # TODO: involve XDG_CONFIG_DIR
     with open(CONFIG, "r+") as configuration:
         data = json.load(configuration)
-        if not data.get("covers"): data['covers'] = {}
-        data["covers"][album['name']] = { 'type': 'ALBUM', 'url': album['images'][0]['url'] }
+        if not data.get("covers"): data['covers'] = []
+        data["covers"].append({ 'type': 1, 'value': album['name'], 'dest_url': album['images'][0]['url'] })
 
     with open(CONFIG, "w") as configuration:
         json.dump(data, configuration)
