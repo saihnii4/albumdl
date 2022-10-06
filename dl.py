@@ -5,13 +5,14 @@ import os
 import sys
 import eyed3
 import logging
+import argparse
 
 import spotipy
 import requests
 from yt_dlp import YoutubeDL
 from spotipy.oauth2 import SpotifyClientCredentials
 
-# two iterations cause __file__ includes a period for some reason
+#two iterations cause __file__ includes a period for some reason
 WORKING_DIR = os.path.dirname(os.path.dirname(__file__))
 
 logger = logging.getLogger("yt-dlp")
@@ -41,7 +42,7 @@ if __name__ == "__main__":
 
     artists = ", ".join(map(lambda a: a['name'], album["artists"]))
     
-    ALBUM_DIR = os.path.join(WORKING_DIR, "albums/{}".format(album['name']))
+    ALBUM_DIR = os.path.join(WORKING_DIR, "albums/{}".format(album['name'].replace("/", "_")))
 
     if os.path.exists(ALBUM_DIR):
         logging.info("Noticed album directory already exists, skipping to configuration")
@@ -60,7 +61,7 @@ if __name__ == "__main__":
             ydl = YoutubeDL(YDL_OPTS)
             ydl.download('ytsearch:' + query)
 
-            audiofile = eyed3.load(os.path.join(WORKING_DIR, "albums/%s/%s.mp3" % (album['name'], query)))
+            audiofile = eyed3.load(os.path.join(WORKING_DIR, "albums/%s/%s.mp3" % (album['name'].replace("/", "_"), query)))
 
             if audiofile.tag is None:
                 raise Exception("tag property doesn't exist WHAT")
