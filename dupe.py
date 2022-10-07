@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# removes duplicate album entries using le epic sets
+
 import json
 
 class KillMe():
@@ -16,10 +19,11 @@ class KillMe():
         if not isinstance(other, type(self)): return NotImplemented
         return getattr(self, self.__uniq)  == getattr(other, self.__uniq)
 
-
 with open("/home/pur0/.config/mpd-discord-richpresence/config.json", "r") as config:
     data = json.load(config)
     data['covers'] = [cover.orig for cover in set([KillMe(cover, "value") for cover in data['covers']])]
+
+    __import__("pprint").pprint(data)
 
     config.close()
 
