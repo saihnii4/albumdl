@@ -3,7 +3,7 @@
 
 import json
 
-class KillMe():
+class Cover():
     def __init__(self, kwargs, uniq):
         self.orig = kwargs
         for k, v in kwargs.items():
