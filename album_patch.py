@@ -28,7 +28,6 @@ with open(CONFIG, "r+") as config:
             if not track or not track.tag:
                 continue
 
-
             song = sp.search(q="%s - %s" % (track.tag.artist, track.tag.title), limit=20, type='track')['tracks']['items'][0]['album']['uri']
 
             album = sp.album(song)
@@ -40,7 +39,7 @@ with open(CONFIG, "r+") as config:
             data["covers"].append({ 'type': 1, 'value': album['name'], 'dest_url': album['images'][0]['url'] })
 
     except (KeyboardInterrupt, Exception):
-        print("interest")
+        print("interesting shit happened here")
         config.close()
 
         with open(CONFIG, "w") as config:

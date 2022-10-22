@@ -12,7 +12,6 @@ class Cover():
         self.__uniq = uniq
 
     def __hash__(self):
-        print(hash(getattr(self, self.__uniq)))
         return hash(getattr(self, self.__uniq))
 
     def __eq__(self, other):
@@ -21,7 +20,7 @@ class Cover():
 
 with open("/home/pur0/.config/mpd-discord-richpresence/config.json", "r") as config:
     data = json.load(config)
-    data['covers'] = [cover.orig for cover in set([KillMe(cover, "value") for cover in data['covers']])]
+    data['covers'] = [cover.orig for cover in set([Cover(cover, "value") for cover in data['covers']])]
 
     __import__("pprint").pprint(data)
 
