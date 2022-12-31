@@ -36,7 +36,7 @@ with open(CONFIG, "r+") as config:
             if any([cross_ref.get("value") == album['name'] for cross_ref in data['covers']]):
                 continue
 
-            data["covers"].append({ 'type': 1, 'value': album['name'], 'dest_url': album['images'][0]['url'] })
+            data["covers"].append({ 'type': 0, 'value': album['name'], 'dest_url': album['images'][0]['url'] })
 
     except (KeyboardInterrupt, Exception):
         print("interesting shit happened here")
