@@ -79,7 +79,7 @@ if __name__ == "__main__":
     with open(CONFIG, "r+") as configuration:
         data = json.load(configuration)
         if not data.get("covers"): data['covers'] = []
-        data["covers"].append({ 'type': 1, 'value': album['name'], 'dest_url': album['images'][0]['url'] })
+        data["covers"].append({ 'type': 0, 'value': album['name'], 'dest_url': album['images'][0]['url'] })
 
     with open(CONFIG, "w") as configuration:
         json.dump(data, configuration)
