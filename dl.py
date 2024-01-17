@@ -6,6 +6,7 @@ import sys
 import eyed3
 import logging
 import argparse
+import urllib.parse
 
 import spotipy
 import requests
@@ -33,9 +34,8 @@ if __name__ == "__main__":
     HOME = os.path.expanduser("~")
     sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=os.environ['CLIENT_ID'],
                                                                client_secret=os.environ['CLIENT_SECRET']))
-
-    arg = sys.stdin.readline().strip()
-    uri = arg.split(" ")[-1][1:-1]
+    arg =input() 
+    uri = urllib.parse.urlparse(arg).path.split('/')[-1]
 
     track = sp.track(uri)
     album = sp.album(track['album']['uri'])
